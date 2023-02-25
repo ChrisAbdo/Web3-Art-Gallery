@@ -2,14 +2,14 @@ import { useId, useRef, useState } from 'react'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { motion, useInView, useMotionValue } from 'framer-motion'
+import Lottie from 'react-lottie-player'
+import lottieJson from '@/images/lottie.json'
 import pic1 from 'src/images/ai1.webp'
 import pic2 from 'src/images/ai2.webp'
 import pic3 from 'src/images/ai3.webp'
 import { AppScreen } from '@/components/AppScreen'
-import { AppStoreLink } from '@/components/AppStoreLink'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { PhoneFrame } from '@/components/PhoneFrame'
 import logoBbc from '@/images/logos/bbc.svg'
 import logoCbs from '@/images/logos/cbs.svg'
 import logoCnn from '@/images/logos/cnn.svg'
@@ -49,8 +49,8 @@ function BackgroundIllustration(props) {
             y2="1025"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#06b6d4" />
-            <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
+            <stop stopColor="#555" />
+            <stop offset="1" stopColor="#555" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
@@ -79,8 +79,8 @@ function BackgroundIllustration(props) {
             y2="913"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#06b6d4" />
-            <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
+            <stop stopColor="#555" />
+            <stop offset="1" stopColor="#555" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
@@ -336,6 +336,11 @@ function AppDemo() {
   )
 }
 
+const phoneFrameVariants = {
+  hidden: { y: 100 },
+  visible: { y: 0, transition: { duration: 0.5 } },
+};
+
 export function Hero() {
   return (
     <div className="overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36">
@@ -362,15 +367,27 @@ export function Hero() {
           <div className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">
             <BackgroundIllustration className="absolute left-1/2 top-4 h-[1026px] w-[1026px] -translate-x-1/3 stroke-gray-300/70 [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] sm:top-16 sm:-translate-x-1/2 lg:-top-16 lg:ml-12 xl:-top-14 xl:ml-0" />
             <div className="-mx-4 h-[448px] px-9 [mask-image:linear-gradient(to_bottom,white_60%,transparent)] sm:mx-0 lg:absolute lg:-inset-x-10 lg:-top-10 lg:-bottom-20 lg:h-auto lg:px-0 lg:pt-10 xl:-bottom-32">
-              <PhoneFrame className="mx-auto max-w-[366px]" priority>
-                {/* <AppDemo /> */}
-                <Image src={pic3} width={366} height={800} alt=""/>
-                <Image src={pic2} width={366} height={800} alt=""/>
-              </PhoneFrame>
+            <motion.div
+      className="mx-auto max-w-[366px]"
+      variants={phoneFrameVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* <PhoneFrame priority>
+        
+        <Image src={pic3} width={366} height={800} alt="" />
+        <Image src={pic2} width={366} height={800} alt="" />
+      </PhoneFrame> */}
+       <Lottie
+      loop
+      animationData={lottieJson}
+      play
+      style={{ width: 450, height: 450 }}
+    />
+   
+    </motion.div>
 
-              <h1 className="text-4xl font-medium tracking-tight text-gray-900 dark:text-white">
-              Put your best art on display
-            </h1>
+              
 
             </div>
           </div>

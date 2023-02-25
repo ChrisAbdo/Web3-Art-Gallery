@@ -170,15 +170,11 @@ function Review({ title, body, author, rating, image, className, ...props }) {
     >
       <blockquote className="text-gray-900 dark:text-white">
      
-        <p className="mt-4 text-lg font-semibold leading-6 before:content-['“'] after:content-['”']">
-          {title}
-        </p>
         
-        <Image src={image} width={400} height={400} alt=""/>
+        
+        <Image className='rounded-xl' src={image} width={400} height={400} alt=""/>
       </blockquote>
-      <figcaption className="mt-3 text-sm text-gray-600 before:content-['–_']">
-        {author}
-      </figcaption>
+     
     </figure>
   )
 }
